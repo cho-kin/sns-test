@@ -1,2 +1,4 @@
 # sns-test
-snsのようなものを作るテストです
+
+
+created by \<template commit version\>

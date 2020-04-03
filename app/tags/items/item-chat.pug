@@ -1,0 +1,17 @@
+item-chat
+  a.f.bg-white.rounded-3.p16.box-shadow(href='/summary/{opts.item.id}')
+    div.flex-fixed.mr8
+      div.w128
+        img.block.s-full.object-fit-contain.border(src=`static/images/sample/sample{opts.index+1}.jpg`)
+    div.w-full.relative
+      div.f.fm.flex-column.mb8
+        h2.mb8 {opts.item.data.title}
+        h3.mb16(if='{opts.item.data.author}') 著者:{opts.item.data.author}
+        div.word-break-all.fs14 {opts.item.data.description}
+      p.line-clamp-3.word-break-all.fs12.text-gray {opts.item.data.last_message.data.body}
+      time.absolute.b0.r0.fs10 {moment(opts.item.data.updated_at).fromNow()}
+
+  style(type='less').
+    :scope {
+      display: block;
+    }
