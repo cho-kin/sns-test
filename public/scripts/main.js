@@ -8,5 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     user.doc.ref.set(res.user);
   }
 
+
+
   await spalate.start();
 });

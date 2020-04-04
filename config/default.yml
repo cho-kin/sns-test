@@ -91,7 +91,7 @@ client:
       - { src: 'https://cdn.jsdelivr.net/gh/phi-jp/vercom@v0.0.2/vercom.js' }
       - { src: 'https://cdn.jsdelivr.net/gh/phi-jp/flickable@v0.0.5/flickable.js' }
       # google analytics
-      - { src: 'https://www.googletagmanager.com/gtag/js?id=UA-155041958-1' }
+      - { src: async 'https://www.googletagmanager.com/gtag/js?id=UA-155041958-1' }
       # node modules
       - { src: '/static/scripts/modules.js' }
 
