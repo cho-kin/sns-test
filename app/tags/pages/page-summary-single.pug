@@ -75,9 +75,7 @@ page-summary-single(spat-animation='slide')
     };
 
     this.clickButton = (e) => {
-      debugger;
       dataLayer.push({'event': 'optimize.activate'});
-      ga.send("send", "click", )
       console.log('hoge');
       app.routeful.go('/test');
     };
