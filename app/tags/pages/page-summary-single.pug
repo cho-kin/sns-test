@@ -4,8 +4,9 @@ page-summary-single(spat-animation='slide')
     div.h-full.overflow-scroll
       div.container.p10
         div.m32
-          div.s-full
-            img.block.s-full(src='static/images/sample/sample1.jpg')
+          div.w200
+            img.block.s-full(src='/static/images/sample/sample1.jpg')
+          button.button(onclick='{clickButton}') button
     div.homebar.bg-white.flex-fixed
 
   style(type='less').
@@ -15,35 +16,38 @@ page-summary-single(spat-animation='slide')
 
   script.
     this.on('mount', () => {
-      dataLayer.push({'event': 'optimize.activate'});
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-155041958-1');
     })
 
     this.on('show', async (e) => {
-      this.item = await app.store.groups.get(e.opts.id);
+      this.item = await app.store.shouts.get(e.opts.id);
 
       this.messages = [];
 
-      this.observer = await this.item.doc.ref.collection('messages').watch(({change, item, isNew}) => {
-        this.messages.push(item);
-        this.messages.sort((a, b) => {
-          return a.data.created_at - b.data.created_at;
-        });
+      //- this.observer = await this.item.doc.ref.collection('shouts').watch(({change, item, isNew}) => {
+      //-   this.messages.push(item);
+      //-   this.messages.sort((a, b) => {
+      //-     return a.data.created_at - b.data.created_at;
+      //-   });
 
-        this.update();
-      });
+      //-   this.update();
+      //- });
 
-      // 所属していなかったら追加する
-      var me_ref = app.store.users.getReference();
-      await this.item.doc.ref.update({
-        users: firebase.firestore.FieldValue.arrayUnion(me_ref)
-      });
+      //- // 所属していなかったら追加する
+      //- var me_ref = app.store.users.getReference();
+      //- await this.item.doc.ref.update({
+      //-   users: firebase.firestore.FieldValue.arrayUnion(me_ref)
+      //- });
 
       this.update();
     });
 
-    this.on('hide', () => {
-      this.observer();
-    });
+    //- this.on('hide', () => {
+    //-   this.observer();
+    //- });
 
     this.send = async (e) => {
       e.preventDefault();
@@ -54,7 +58,7 @@ page-summary-single(spat-animation='slide')
       this.refs.input.value = '';
 
       var uid = firebase.auth().getUid();
-      var messageRef = await this.item.doc.ref.collection('messages').add({
+      var messageRef = await this.item.doc.ref.collection('shouts').add({
         body: value,
         user_id: uid,
         user_ref: app.store.users.getReference(),
@@ -68,4 +72,10 @@ page-summary-single(spat-animation='slide')
       });
 
       //- alert(this.refs.input.value);
+    };
+
+    this.clickButton = () => {
+      dataLayer.push({'event': 'optimize.activate'});
+      console.log('hoge');
+      app.routeful.go('/test');
     };

@@ -27,12 +27,12 @@
         return items;
       }
     },
-    groups: {
+    shouts: {
       async get(id) {
-        return await flarebase.store.db.collection('groups').doc(id).getWithRelation();
+        return await flarebase.store.db.collection('shouts').doc(id).getWithRelation();
       },
       async index({user_id, limit, startAfter}) {
-        var ref = flarebase.store.db.collection('groups');
+        var ref = flarebase.store.db.collection('shouts');
         
         if (user_id) {
           var user_ref = flarebase.store.db.collection('users').doc(user_id);

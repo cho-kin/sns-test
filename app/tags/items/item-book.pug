@@ -1,5 +1,5 @@
 item-book
-  a.f.bg-white.rounded-3.p16.box-shadow(click='{clickItem}')
+  a.f.bg-white.rounded-3.p16.box-shadow.optimize(click='{clickItem}')
     div.flex-fixed.mr8
       div.w128
         img.block.s-full.object-fit-contain.border(src=`static/images/sample/sample{opts.index+1}.jpg`)
@@ -18,6 +18,6 @@ item-book
 
   script.
     this.clickItem = () => {
-      dataLayer.push({'event': 'optimize.activate'});
+      //- dataLayer.push({'event': 'optimize.activate'});
       app.routeful.go(`/summary/${opts.item.id}`);
     };
