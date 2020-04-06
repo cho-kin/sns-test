@@ -10,6 +10,11 @@ page-index
 
   script.
     this.on('mount', async () => {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-155041958-1');
+      
       this.sclazy = Sclazy({
         target: this.refs.body,
         onload: async () => {
